@@ -15,7 +15,62 @@ CoordMode, Mouse, Screen
 MouseGetPos, xpos, ypos
 Run, vlc
 WinWait, VLC
-WinMove, VLC, , xpos, ypos, 1050, 600
+WinMove, VLC, , 0, 0, 1050, 600
+WinMove, VLC, , xpos, ypos
+return
+
+;================================================
+;create VLC window at location 1 top left screen
+^!1::
+CoordMode, Mouse, Screen
+Run, vlc
+WinWait, VLC
+WinMove, VLC, , -1080, 200, 1050, 600
+return
+
+;================================================
+;create VLC window at location 2 middle left screen
+^!2::
+CoordMode, Mouse, Screen
+Run, vlc
+WinWait, VLC
+WinMove, VLC, , -1080, 800, 1050, 600
+return
+
+;================================================
+;create VLC window at location 3 bottom left screen
+^!3::
+CoordMode, Mouse, Screen
+Run, vlc
+WinWait, VLC
+WinMove, VLC, , -1080, 1400, 1050, 600
+return
+
+;================================================
+;create VLC window at location 4 top right screen
+^!4::
+CoordMode, Mouse, Screen
+Run, vlc
+WinWait, VLC
+WinMove, VLC, , 1950, 200, 1050, 600
+return
+
+;================================================
+;create VLC window at location 5 middle right screen
+^!5::
+CoordMode, Mouse, Screen
+Run, vlc
+WinWait, VLC
+WinMove, VLC, , 1950, 800, 1050, 600
+return
+
+;================================================
+;create VLC window at location 6 bottom right screen
+^!6::
+CoordMode, Mouse, Screen
+Run, vlc
+WinWait, VLC
+WinMove, VLC, , 1950, 1400, 1050, 600
 return
 
 ;================================================
