@@ -1,6 +1,18 @@
 ;================================================
+;seems like globals MUST be placed before anything else
 #SingleInstance,Force
 CoordMode, Mouse, Screen
+
+;VLC screen settings
+window_width := 1050
+window_height := 600
+
+left_xpos := -1080
+right_xpos := 1950
+
+top_ypos := 200
+middle_ypos := 800
+bottom_ypos := 1400
 
 ;================================================
 ;UNIX like shortcut for launching terminal
@@ -18,7 +30,7 @@ CoordMode, Mouse, Screen
 	MouseGetPos, xpos, ypos
 	Run, vlc
 	WinWait, VLC
-	WinMove, VLC, , 0, 0, 1050, 600
+	WinMove, VLC, , 0, 0, window_width, window_height
 	WinMove, VLC, , xpos, ypos
 	return
 }
@@ -29,7 +41,7 @@ CoordMode, Mouse, Screen
 {
 	Run, vlc
 	WinWait, VLC
-	WinMove, VLC, , -1080, 200, 1050, 600
+	WinMove, VLC, , left_xpos, top_ypos, window_width, window_height
 	return
 }
 
@@ -39,7 +51,7 @@ CoordMode, Mouse, Screen
 {
 	Run, vlc
 	WinWait, VLC
-	WinMove, VLC, , -1080, 800, 1050, 600
+	WinMove, VLC, , left_xpos, middle_ypos, window_width, window_height
 	return
 }
 
@@ -49,7 +61,7 @@ CoordMode, Mouse, Screen
 {
 	Run, vlc
 	WinWait, VLC
-	WinMove, VLC, , -1080, 1400, 1050, 600
+	WinMove, VLC, , left_xpos, bottom_ypos, window_width, window_height
 	return
 }
 
@@ -59,7 +71,7 @@ CoordMode, Mouse, Screen
 {
 	Run, vlc
 	WinWait, VLC
-	WinMove, VLC, , 1950, 200, 1050, 600
+	WinMove, VLC, , right_xpos, top_ypos, window_width, window_height
 	return
 }
 
@@ -69,7 +81,7 @@ CoordMode, Mouse, Screen
 {
 	Run, vlc
 	WinWait, VLC
-	WinMove, VLC, , 1950, 800, 1050, 600
+	WinMove, VLC, , right_xpos, middle_ypos, window_width, window_height
 	return
 }
 
@@ -79,7 +91,7 @@ CoordMode, Mouse, Screen
 {
 	Run, vlc
 	WinWait, VLC
-	WinMove, VLC, , 1950, 1400, 1050, 600
+	WinMove, VLC, , right_xpos, bottom_ypos, window_width, window_height
 	return
 }
 
