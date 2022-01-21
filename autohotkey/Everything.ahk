@@ -194,58 +194,39 @@ bottom_ypos := middle_ypos + window_height + spacer
 }
 
 ;================================================
-Jiggle()
+KeepAlive()
 {
-	; 2 minutes since last REAL user action
-	;if (A_TimeIdlePhysical > 120000)
+	; 1 min since last REAL user action
 	if (A_TimeIdlePhysical > 60000)
 	{
-		;CoordMode, Mouse, Screen
-	
-		; mouse pointer stays in place but sends a mouse event
-		;MouseGetPos, xpos, ypos
-		; need a second monitor check for doing something differently
-		;MouseMove, xpos, ypos - 1
-		;MouseMove, xpos, ypos + 1
-		;MouseMove, ypos, xpos
-		;MsgBox, , , xpos: %xpos% ypos: %ypos%, 1
-		;MouseMove, xpos + 5, ypos + 5
-		;MouseMove, xpos, ypos
-		;MouseMove,5,0,0,R
-		;MouseMove,-5,0,0,R
-		;MsgBox, , , Moved Mouse, 1
-		
-		;should be just as harmless and keep the screen/apps alive
 		BlockInput, On
-		SendInput, {ScrollLock}
-		SendInput, {ScrollLock}
+		SendInput, {LWin}
+		Sleep 100
+		SendInput, {LWin}
 		BlockInput, Off
 	}
 	
 	;debuggin A_TimeIdlePhysical
-	;MsgBox, , , Mouse Jiggle Timer %A_TimeIdlePhysical%, 1
-
-	;above ends up always moving on other monitors.
-	;DllCall("SetCursorPos", "int", 257, "int", -1075)
+	;MsgBox, , , KeepAlive Timer %A_TimeIdlePhysical%, 1
 	
 	return
 }
 
 ;================================================
-; turn on or turn off periodic mouse jiggling
+; turn on or turn off periodic fake user interaction
 ^!m::
 {
 	if(timerOn)
 	{
 		timerOn := false
-		MsgBox, , , Mouse Jiggle Timer Off, 2
-		SetTimer, Jiggle, Off
+		MsgBox, , , KeepAlive Timer Off, 2
+		SetTimer, KeepAlive, Off
 	}
 	else
 	{
 		timerOn := true
-		MsgBox, , , Mouse Jiggle Timer On, 2
-		SetTimer, Jiggle, 1000
+		MsgBox, , , KeepAlive Timer On, 2
+		SetTimer, KeepAlive, 1000
 	}
 	
 	return
