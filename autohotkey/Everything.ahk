@@ -1,164 +1,184 @@
 ;================================================
 #SingleInstance,Force
+CoordMode, Mouse, Screen
 
 ;================================================
 ;UNIX like shortcut for launching terminal
 ^!t::
-SetWorkingDir, %HOMEDRIVE%%HOMEPATH%
-Run, PowerShell -NoLogo
-return
+{
+	SetWorkingDir, %HOMEDRIVE%%HOMEPATH%
+	Run, PowerShell -NoLogo
+	return
+}
 
 ;================================================
 ;create VLC window at the current mouse location
 ^!v::
-CoordMode, Mouse, Screen
-MouseGetPos, xpos, ypos
-Run, vlc
-WinWait, VLC
-WinMove, VLC, , 0, 0, 1050, 600
-WinMove, VLC, , xpos, ypos
-return
+{
+	MouseGetPos, xpos, ypos
+	Run, vlc
+	WinWait, VLC
+	WinMove, VLC, , 0, 0, 1050, 600
+	WinMove, VLC, , xpos, ypos
+	return
+}
 
 ;================================================
 ;create VLC window at location 1 top left screen
 ^!1::
-CoordMode, Mouse, Screen
-Run, vlc
-WinWait, VLC
-WinMove, VLC, , -1080, 200, 1050, 600
-return
+{
+	Run, vlc
+	WinWait, VLC
+	WinMove, VLC, , -1080, 200, 1050, 600
+	return
+}
 
 ;================================================
 ;create VLC window at location 2 middle left screen
 ^!2::
-CoordMode, Mouse, Screen
-Run, vlc
-WinWait, VLC
-WinMove, VLC, , -1080, 800, 1050, 600
-return
+{
+	Run, vlc
+	WinWait, VLC
+	WinMove, VLC, , -1080, 800, 1050, 600
+	return
+}
 
 ;================================================
 ;create VLC window at location 3 bottom left screen
 ^!3::
-CoordMode, Mouse, Screen
-Run, vlc
-WinWait, VLC
-WinMove, VLC, , -1080, 1400, 1050, 600
-return
+{
+	Run, vlc
+	WinWait, VLC
+	WinMove, VLC, , -1080, 1400, 1050, 600
+	return
+}
 
 ;================================================
 ;create VLC window at location 4 top right screen
 ^!4::
-CoordMode, Mouse, Screen
-Run, vlc
-WinWait, VLC
-WinMove, VLC, , 1950, 200, 1050, 600
-return
+{
+	Run, vlc
+	WinWait, VLC
+	WinMove, VLC, , 1950, 200, 1050, 600
+	return
+}
 
 ;================================================
 ;create VLC window at location 5 middle right screen
 ^!5::
-CoordMode, Mouse, Screen
-Run, vlc
-WinWait, VLC
-WinMove, VLC, , 1950, 800, 1050, 600
-return
+{
+	Run, vlc
+	WinWait, VLC
+	WinMove, VLC, , 1950, 800, 1050, 600
+	return
+}
 
 ;================================================
 ;create VLC window at location 6 bottom right screen
 ^!6::
-CoordMode, Mouse, Screen
-Run, vlc
-WinWait, VLC
-WinMove, VLC, , 1950, 1400, 1050, 600
-return
+{
+	Run, vlc
+	WinWait, VLC
+	WinMove, VLC, , 1950, 1400, 1050, 600
+	return
+}
 
 ;================================================
+;spam a chat window with rapid text
 ^j::
-sleep_time := 200
+{
+	sleep_time := 200
 
-SendInput, {enter}in a 32 bit world {enter}
-Sleep sleep_time
-SendInput, {enter}you're a 2 bit user {enter}
-Sleep sleep_time
-SendInput, {enter}you got your own news group {enter}
-Sleep sleep_time
-SendInput, {enter}alt total loser {enter}
-Sleep sleep_time
-SendInput, {enter}your motherboard melts {enter}
-Sleep sleep_time
-SendInput, {enter}when you try and send a fax {enter}
-Sleep sleep_time
-SendInput, {enter}where'd you get your cpu in a box of crackerjax {enter}
-Sleep sleep_time
-SendInput, {enter}play me online and I know that I'll beat you {enter}
-Sleep sleep_time
-SendInput, {enter}if I ever meet you I'll control alt delete you {enter}
-Sleep sleep_time
-return
+	SendInput, {enter}in a 32 bit world {enter}
+	Sleep sleep_time
+	SendInput, {enter}you're a 2 bit user {enter}
+	Sleep sleep_time
+	SendInput, {enter}you got your own news group {enter}
+	Sleep sleep_time
+	SendInput, {enter}alt total loser {enter}
+	Sleep sleep_time
+	SendInput, {enter}your motherboard melts {enter}
+	Sleep sleep_time
+	SendInput, {enter}when you try and send a fax {enter}
+	Sleep sleep_time
+	SendInput, {enter}where'd you get your cpu in a box of crackerjax {enter}
+	Sleep sleep_time
+	SendInput, {enter}play me online and I know that I'll beat you {enter}
+	Sleep sleep_time
+	SendInput, {enter}if I ever meet you I'll control alt delete you {enter}
+	Sleep sleep_time
+	return
+}
 
 ;================================================
+;spam a chat window with rapid text
 ^!g::
-sleep_time := 200
+{
+	sleep_time := 200
 
-SendInput, {enter}gg easy {enter}
-Sleep sleep_time
-SendInput, {enter}gg easy {enter}
-Sleep sleep_time
-SendInput, {enter}gg easy {enter}
-Sleep sleep_time
-SendInput, {enter}gg easy {enter}
-Sleep sleep_time
-SendInput, {enter}gg easy {enter}
-Sleep sleep_time
-SendInput, {enter}gg easy {enter}
-Sleep sleep_time
-SendInput, {enter}gg easy {enter}
-Sleep sleep_time
-SendInput, {enter}gg easy {enter}
-Sleep sleep_time
-SendInput, {enter}gg easy {enter}
-Sleep sleep_time
-return
-
+	SendInput, {enter}gg easy {enter}
+	Sleep sleep_time
+	SendInput, {enter}gg easy {enter}
+	Sleep sleep_time
+	SendInput, {enter}gg easy {enter}
+	Sleep sleep_time
+	SendInput, {enter}gg easy {enter}
+	Sleep sleep_time
+	SendInput, {enter}gg easy {enter}
+	Sleep sleep_time
+	SendInput, {enter}gg easy {enter}
+	Sleep sleep_time
+	SendInput, {enter}gg easy {enter}
+	Sleep sleep_time
+	SendInput, {enter}gg easy {enter}
+	Sleep sleep_time
+	SendInput, {enter}gg easy {enter}
+	Sleep sleep_time
+	return
+}
 
 ;================================================
+;league of legends dance emote
 ^!d::
-SendInput, {enter}/dance{enter}
-return
+{
+	SendInput, {enter}/dance{enter}
+	return
+}
 
 ;================================================
 ^a::
-;how fast these can be cast would be based on casting speed breakpoints
-sleep_time := 500
+{
+	;how fast these can be cast would be based on casting speed breakpoints
+	sleep_time := 500
 
-SendInput, {f2}
-Click, Right
-Sleep sleep_time
-SendInput, {f3}
-Click, Right
-Sleep sleep_time
-SendInput, {f4}
-Click, Right
-Sleep sleep_time
-SendInput, {f5}
-Click, Right
-Sleep sleep_time
-SendInput, {f5}
-Click, Right
-Sleep sleep_time
-SendInput, {f5}
-Click, Right
-Sleep sleep_time
-SendInput, {f5}
-Click, Right
-Sleep sleep_time
-SendInput, {f5}
-Click, Right
-Sleep sleep_time
-SendInput, {f1}
-Click, Right
-return
+	SendInput, {f2}
+	Click, Right
+	Sleep sleep_time
+	SendInput, {f3}
+	Click, Right
+	Sleep sleep_time
+	SendInput, {f4}
+	Click, Right
+	Sleep sleep_time
+	SendInput, {f5}
+	Click, Right
+	Sleep sleep_time
+	SendInput, {f5}
+	Click, Right
+	Sleep sleep_time
+	SendInput, {f5}
+	Click, Right
+	Sleep sleep_time
+	SendInput, {f5}
+	Click, Right
+	Sleep sleep_time
+	SendInput, {f5}
+	Click, Right
+	Sleep sleep_time
+	SendInput, {f1}
+	Click, Right
+	return
+}
 
 ;================================================
 Jiggle()
@@ -198,6 +218,7 @@ Jiggle()
 	return
 }
 
+;================================================
 ; turn on or turn off periodic mouse jiggling
 ^!m::
 {
