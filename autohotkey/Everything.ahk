@@ -4,15 +4,16 @@
 CoordMode, Mouse, Screen
 
 ;VLC screen settings
-window_width := 1050
-window_height := 600
+window_width := 1080
+window_height := 620
 
 left_xpos := -1080
 right_xpos := 1950
 
 top_ypos := 200
-middle_ypos := 800
-bottom_ypos := 1400
+spacer := 10
+middle_ypos := top_ypos + window_height + spacer
+bottom_ypos := middle_ypos + window_height + spacer
 
 ;================================================
 ;UNIX like shortcut for launching terminal
