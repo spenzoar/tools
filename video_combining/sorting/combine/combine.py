@@ -6,6 +6,25 @@ import subprocess
 import uuid
 
 #================================================
+#return chunklist part of the filename
+def GetChunklist(name):
+	#left-most index of the substring otherwise -1
+	start_index = name.find("w") + 1
+	stop_index  = name.find("b") - 1
+	chunklist = name[start_index:stop_index]
+	return chunklist
+
+#================================================
+#return timestamp part of the filename
+def GetTimestamp(name):
+	#left-most index of the substring otherwise -1
+	start_index = name.find("d-") + 2
+	stop_index = name.find("-c") - 2
+	timestamp =  name[start_index:stop_index]
+	return timestamp
+
+
+#================================================
 def Combine(files, ext):
 
 	rc = 0
@@ -21,8 +40,9 @@ def Combine(files, ext):
 	for file in files:
 			
 			if(len(output_file_name) == 0):
-				timestamp = os.path.getctime(file)
-				output_file_name = time.strftime("%Y-%m-%d", time.localtime(timestamp))
+				#timestamp = os.path.getctime(file)
+				#output_file_name = time.strftime("%Y-%m-%d", time.localtime(timestamp))
+				output_file_name = GetTimestamp(file)
 			
 			#seems to work better to ffmpeg each file before combining them
 			#ffmpeg -i "concat:%IN_FILE_5%.%EXT%" -c copy %IN_FILE_5%-temp.%EXT%
@@ -78,13 +98,8 @@ def SortByChunklist(files):
 	file_dict = dict()
 
 	for file in files:
-
-		#left-most index of the substring otherwise -1
-		start_index = file.find("w") + 1
-		stop_index  = file.find("b") - 1
-
 		#convert chunklist to number and use as key for the dictionary
-		chunk_num = int(file[start_index:stop_index])
+		chunk_num = int(GetChunklist(file))
 		if chunk_num in file_dict:
 			file_dict[chunk_num].append(file)
 		else:
