@@ -129,8 +129,8 @@ def main():
 	ext = "mp4"
 	files = glob.glob("*." + ext)
 
-	#change depending on how video sequence should be determined
-	SortByCreated(files)
+	#change depending on how video sequence should be determined. VLC prepends sortable timestamp.
+	SortByName(files)
 
 	rc = Combine(files, ext)
 
