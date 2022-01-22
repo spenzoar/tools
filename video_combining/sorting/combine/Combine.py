@@ -1,4 +1,6 @@
 import os
+import sys
+import glob
 import time
 import subprocess
 
@@ -55,7 +57,63 @@ def Combine(files, ext):
 	for name in file_names:
 		os.remove(name)
 
+	return rc
+
+#================================================
+def SortByCreated(files):
+	files.sort(key=lambda x: os.path.getctime(x))
+
+#================================================
+def SortByModified(files):
+	files.sort(key=lambda x: os.path.getmtime(x))
+
+#================================================
+def SortByName(files):
+	files.sort(key=lambda x: os.path.splitext(x)[0])
+
+#================================================
+def SortByChunklist(files):
+
+	file_dict = dict()
+
+	for file in files:
+
+		#left-most index of the substring otherwise -1
+		start_index = file.find("w") + 1
+		stop_index  = file.find("b") - 1
+
+		#convert chunklist to number and use as key for the dictionary
+		chunk_num = int(file[start_index:stop_index])
+		if chunk_num in file_dict:
+			file_dict[chunk_num].append(file)
+		else:
+			file_dict[chunk_num] = [file]
+
+	#check results of the built dictionary
+	for key in file_dict:
+		print(key)
+		for file in file_dict[key]:
+			print("\t" + file)
+
+	return file_dict
+
+#================================================
+def main():
+
+	rc = 0
+
+	#ffmpeg supports several video file extensions
+	ext = "mp4"
+	files = glob.glob("*." + ext)
+
+	#change depending on how video sequence should be determined
+	SortByCreated(files)
+
+	rc = Combine(files, ext)
 
 	return rc
 
 #================================================
+if __name__ == "__main__":
+	rc = main()
+	sys.exit(rc)
