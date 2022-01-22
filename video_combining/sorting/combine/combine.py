@@ -3,7 +3,7 @@ import sys
 import glob
 import time
 import subprocess
-
+import uuid
 
 #================================================
 def Combine(files, ext):
@@ -12,6 +12,7 @@ def Combine(files, ext):
 
 	#keep empty for autoname based on date
 	output_file_name = ""
+	output_file_uuid = str(uuid.uuid4())
 
 	file_list_name = "temp.txt"
 	file_list = open(file_list_name, "a", encoding="utf8")
@@ -49,7 +50,7 @@ def Combine(files, ext):
 				"-safe", "0",
 				"-i", file_list_name,
 				"-c", "copy",
-				output_file_name + "." + ext,
+				output_file_name + "__" + output_file_uuid + "." + ext,
 			])
 
 	#cleanup
@@ -115,5 +116,8 @@ def main():
 
 #================================================
 if __name__ == "__main__":
-	rc = main()
-	sys.exit(rc)
+	try:
+		rc = main()
+		sys.exit(rc)
+	except:
+		sys.exit(69)
