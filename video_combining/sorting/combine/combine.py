@@ -78,6 +78,13 @@ def Combine(files, ext):
 	for name in file_names:
 		os.remove(name)
 
+	#delete when know combine succeeded
+	move_dir = "processed"
+	if not os.path.exists(move_dir):
+		os.mkdir(move_dir)
+	for file in files:
+		os.rename(file, move_dir + "/" + file)
+
 	return rc
 
 #================================================
