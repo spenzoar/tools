@@ -31,15 +31,20 @@ CreateVLCWindow(xpos, ypos, width, height)
 	Run, vlc
 	WinWait, VLC
 	WinMove, VLC, , xpos, ypos, width, height
-	Sleep 100
-	SendInput, {control down}n{control up}
-	Sleep 100
-	SendInput, {control down}v{control up}
-	Sleep 100
-	SendInput, {enter}
+	
+	;paste HLS m3u8 stream url into vlc if in the clipboard
+	stream_url := "=.m3u8"
+	IfInString, Clipboard, %stream_url%
+	{
+		Sleep 100
+		SendInput, {control down}n{control up}
+		Sleep 100
+		SendInput, {control down}v{control up}
+		Sleep 100
+		SendInput, {enter}
+	}
 	return
 }
-
 
 ;================================================
 ;create VLC window at the current mouse location
