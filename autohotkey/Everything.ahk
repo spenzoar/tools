@@ -243,3 +243,19 @@ KeepAlive()
 ;================================================
 
 
+
+
+
+;================================================
+;https://www.autohotkey.com/board/topic/27988-edit-this-script-with-notepad/
+;regedit
+;
+;HKEY_CLASSES_ROOT\AutoHotkeyScript\Shell\Edit\Command
+;
+;modify the value in
+;
+;"C:\*\Notepad++"%1 (with the quotation marks)
+;
+;* = notepad++ path 
+
+
