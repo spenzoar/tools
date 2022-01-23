@@ -1,21 +1,16 @@
 import os
 import sys
-import glob
 import time
+import glob
 import subprocess
 import uuid
 
 #================================================
 #return chunklist part of the filename
 def GetChunklist(name):
-
-	#parse VLC generated vs python generated files differently
-	if name.find("vlc-record") == -1:
-		chunklist = "0"
-	else:
-		start_index = name.find("w") + 1
-		stop_index  = name.find("b") - 1
-		chunklist = name[start_index:stop_index]
+	start_index = name.find("w") + 1
+	stop_index  = name.find("b") - 1
+	chunklist = name[start_index:stop_index]
 	return chunklist
 
 #================================================
@@ -52,7 +47,9 @@ def Combine(files, ext):
 			if(len(output_file_name) == 0):
 				#timestamp = os.path.getctime(file)
 				#output_file_name = time.strftime("%Y-%m-%d", time.localtime(timestamp))
-				output_file_name = GetTimestamp(file)
+
+				#easier to just keep the whole file name?
+				output_file_name = GetTimestamp(file) + "_w" + GetChunklist(file) + "_b"
 			
 			#seems to work better to ffmpeg each file before combining them
 			#ffmpeg -i "concat:%IN_FILE_5%.%EXT%" -c copy %IN_FILE_5%-temp.%EXT%
