@@ -8,10 +8,10 @@ window_width := 1080
 window_height := 620
 
 left_xpos := -1080
-right_xpos := 1950
+right_xpos := 1920
 
 top_ypos := 200
-spacer := 10
+spacer := 5
 middle_ypos := top_ypos + window_height + spacer
 bottom_ypos := middle_ypos + window_height + spacer
 
@@ -25,13 +25,21 @@ bottom_ypos := middle_ypos + window_height + spacer
 }
 
 ;================================================
+CreateVLCWindow(xpos, ypos, width, height)
+{
+	Run, vlc
+	WinWait, VLC
+	WinMove, VLC, , xpos, ypos, width, height
+	return
+}
+
+
+;================================================
 ;create VLC window at the current mouse location
 ^!v::
 {
 	MouseGetPos, xpos, ypos
-	Run, vlc
-	WinWait, VLC
-	WinMove, VLC, , 0, 0, window_width, window_height
+	CreateVLCWindow(xpos, ypos, window_width, window_height)
 	WinMove, VLC, , xpos, ypos
 	return
 }
@@ -40,9 +48,7 @@ bottom_ypos := middle_ypos + window_height + spacer
 ;create VLC window at location 1 top left screen
 ^!1::
 {
-	Run, vlc
-	WinWait, VLC
-	WinMove, VLC, , left_xpos, top_ypos, window_width, window_height
+	CreateVLCWindow(left_xpos, top_ypos, window_width, window_height)
 	return
 }
 
@@ -50,9 +56,7 @@ bottom_ypos := middle_ypos + window_height + spacer
 ;create VLC window at location 2 middle left screen
 ^!2::
 {
-	Run, vlc
-	WinWait, VLC
-	WinMove, VLC, , left_xpos, middle_ypos, window_width, window_height
+	CreateVLCWindow(left_xpos, middle_ypos, window_width, window_height)
 	return
 }
 
@@ -60,9 +64,7 @@ bottom_ypos := middle_ypos + window_height + spacer
 ;create VLC window at location 3 bottom left screen
 ^!3::
 {
-	Run, vlc
-	WinWait, VLC
-	WinMove, VLC, , left_xpos, bottom_ypos, window_width, window_height
+	CreateVLCWindow(left_xpos, bottom_ypos, window_width, window_height)
 	return
 }
 
@@ -70,9 +72,7 @@ bottom_ypos := middle_ypos + window_height + spacer
 ;create VLC window at location 4 top right screen
 ^!4::
 {
-	Run, vlc
-	WinWait, VLC
-	WinMove, VLC, , right_xpos, top_ypos, window_width, window_height
+	CreateVLCWindow(right_xpos, top_ypos, window_width, window_height)
 	return
 }
 
@@ -80,9 +80,7 @@ bottom_ypos := middle_ypos + window_height + spacer
 ;create VLC window at location 5 middle right screen
 ^!5::
 {
-	Run, vlc
-	WinWait, VLC
-	WinMove, VLC, , right_xpos, middle_ypos, window_width, window_height
+	CreateVLCWindow(right_xpos, middle_ypos, window_width, window_height)
 	return
 }
 
@@ -90,9 +88,7 @@ bottom_ypos := middle_ypos + window_height + spacer
 ;create VLC window at location 6 bottom right screen
 ^!6::
 {
-	Run, vlc
-	WinWait, VLC
-	WinMove, VLC, , right_xpos, bottom_ypos, window_width, window_height
+	CreateVLCWindow(right_xpos, bottom_ypos, window_width, window_height)
 	return
 }
 
@@ -201,7 +197,7 @@ KeepAlive()
 	{
 		BlockInput, On
 		SendInput, {LWin}
-		Sleep 100
+		Sleep 200
 		SendInput, {LWin}
 		BlockInput, Off
 	}
