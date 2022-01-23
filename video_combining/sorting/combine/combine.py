@@ -4,6 +4,7 @@ import time
 import glob
 import subprocess
 import uuid
+import shutil
 
 #================================================
 #check for VLC created file based on filename
@@ -28,11 +29,11 @@ def GetTimestamp(name):
 
 	#parse VLC generated vs python generated files differently
 	if IsVLCFile(name):
-		start_index = 0
-		stop_index  = name.find("_") - 1
-	else:
 		start_index = name.find("d-") + 2
 		stop_index = name.find("-c") - 2
+	else:
+		start_index = 0
+		stop_index  = name.find("_") - 1
 
 	timestamp =  name[start_index:stop_index]
 	return timestamp
@@ -46,30 +47,24 @@ def Combine(files, ext):
 	#if not combining or processing then skip everything
 	if len(files) == 0:
 		return rc
-	if Len(files) == 1 and IsVLCFile(files[0]):
+	if len(files) == 1 and not IsVLCFile(files[0]):
 		return rc
 
-	#keep empty for autoname based on date
-	output_file_name = ""
+	#use timestamp from the first file but chunklist from that last if stream has moved
 	output_file_uuid = str(uuid.uuid4())
+	output_file_name = GetTimestamp(files[0]) + "_w" + GetChunklist(files[-1]) + "_b" + "__" + output_file_uuid + "." + ext
 
 	file_list_name = "temp.txt"
 	file_list = open(file_list_name, "a", encoding="utf8")
 	file_names = []
 
 	for file in files:
-			
-			if(len(output_file_name) == 0):
-				#timestamp = os.path.getctime(file)
-				#output_file_name = time.strftime("%Y-%m-%d", time.localtime(timestamp))
 
-				#easier to just keep the whole file name?
-				output_file_name = GetTimestamp(file) + "_w" + GetChunklist(file) + "_b"
-			
-			#seems to work better to ffmpeg each file before combining them
-			#ffmpeg -i "concat:%IN_FILE_5%.%EXT%" -c copy %IN_FILE_5%-temp.%EXT%
-			pre, e = os.path.splitext(file)
-			temp_name = pre + "-temp." + ext
+		pre, e = os.path.splitext(file)
+		temp_name = pre + "-temp." + ext
+
+		#seems to work better to ffmpeg each file before combining them
+		if IsVLCFile(file):
 			subprocess.call([
 				"ffmpeg",
 				"-i",
@@ -78,11 +73,15 @@ def Combine(files, ext):
 				"copy",
 				temp_name,
 			])
-			
-			file_list.write("file " + temp_name + "\n")
-			file_names.append(temp_name)
 
-	#done writing the list to file. close before passing to ffmpeg.	
+		#just create temp copy if already gone through ffmpeg. assume this is faster?
+		else:
+			shutil.copyfile(file, temp_name)
+		
+		file_list.write("file " + temp_name + "\n")
+		file_names.append(temp_name)
+
+	#done writing the list to file. close before passing to ffmpeg.
 	file_list.close()
 
 	#combine the file into single file
@@ -92,7 +91,7 @@ def Combine(files, ext):
 				"-safe", "0",
 				"-i", file_list_name,
 				"-c", "copy",
-				output_file_name + "__" + output_file_uuid + "." + ext,
+				output_file_name,
 			])
 
 	#cleanup

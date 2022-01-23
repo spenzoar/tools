@@ -20,9 +20,9 @@ def main():
 		for file in file_dict[key]:
 			print("\t" + file)
 
-		#rc = combine.Combine(file_dict[key], ext)
-		#if rc != 0:
-			#break
+		rc = combine.Combine(file_dict[key], ext)
+		if rc != 0:
+			break
 
 	return rc
 
