@@ -6,6 +6,15 @@ import subprocess
 import uuid
 
 #================================================
+#check for VLC created file based on filename
+def IsVLCFile(name):
+	vlc = name.find("vlc-record")
+	if vlc == -1:
+		return False
+	else:
+		return True
+
+#================================================
 #return chunklist part of the filename
 def GetChunklist(name):
 	start_index = name.find("w") + 1
@@ -18,7 +27,7 @@ def GetChunklist(name):
 def GetTimestamp(name):
 
 	#parse VLC generated vs python generated files differently
-	if name.find("vlc-record") == -1:
+	if IsVLCFile(name):
 		start_index = 0
 		stop_index  = name.find("_") - 1
 	else:
@@ -33,6 +42,12 @@ def GetTimestamp(name):
 def Combine(files, ext):
 
 	rc = 0
+
+	#if not combining or processing then skip everything
+	if len(files) == 0:
+		return rc
+	if Len(files) == 1 and IsVLCFile(files[0]):
+		return rc
 
 	#keep empty for autoname based on date
 	output_file_name = ""
