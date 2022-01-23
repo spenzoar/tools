@@ -137,17 +137,6 @@ def main():
 	SortByName(files)
 	rc = Combine(files, ext)
 
-	#create several output files based on matching chunklists
-	#file_dict = DictionaryByChunklist(files)
-	#for key in file_dict:
-		#print(key)
-		#for file in file_dict[key]:
-			#print("\t" + file)
-
-		#rc = Combine(file_dict[key], ext)
-
-		#print(rc)
-
 	return rc
 
 #================================================
