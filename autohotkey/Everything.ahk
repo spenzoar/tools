@@ -19,7 +19,8 @@ bottom_ypos := middle_ypos + window_height + spacer
 ;UNIX like shortcut for launching terminal
 ^!t::
 {
-	SetWorkingDir, %HOMEDRIVE%%HOMEPATH%
+	;SetWorkingDir, %HOMEDRIVE%%HOMEPATH%
+	SetWorkingDir, C:\_git\byteseance\
 	Run, PowerShell -NoLogo
 	return
 }
