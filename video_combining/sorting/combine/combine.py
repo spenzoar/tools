@@ -8,18 +8,28 @@ import uuid
 #================================================
 #return chunklist part of the filename
 def GetChunklist(name):
-	#left-most index of the substring otherwise -1
-	start_index = name.find("w") + 1
-	stop_index  = name.find("b") - 1
-	chunklist = name[start_index:stop_index]
+
+	#parse VLC generated vs python generated files differently
+	if name.find("vlc-record") == -1:
+		chunklist = "0"
+	else:
+		start_index = name.find("w") + 1
+		stop_index  = name.find("b") - 1
+		chunklist = name[start_index:stop_index]
 	return chunklist
 
 #================================================
 #return timestamp part of the filename
 def GetTimestamp(name):
-	#left-most index of the substring otherwise -1
-	start_index = name.find("d-") + 2
-	stop_index = name.find("-c") - 2
+
+	#parse VLC generated vs python generated files differently
+	if name.find("vlc-record") == -1:
+		start_index = 0
+		stop_index  = name.find("_") - 1
+	else:
+		start_index = name.find("d-") + 2
+		stop_index = name.find("-c") - 2
+
 	timestamp =  name[start_index:stop_index]
 	return timestamp
 
@@ -100,7 +110,7 @@ def SortByName(files):
 	files.sort(key=lambda x: os.path.splitext(x)[0])
 
 #================================================
-def SortByChunklist(files):
+def DictionaryByChunklist(files):
 
 	file_dict = dict()
 
@@ -111,12 +121,6 @@ def SortByChunklist(files):
 			file_dict[chunk_num].append(file)
 		else:
 			file_dict[chunk_num] = [file]
-
-	#check results of the built dictionary
-	for key in file_dict:
-		print(key)
-		for file in file_dict[key]:
-			print("\t" + file)
 
 	return file_dict
 
@@ -131,8 +135,18 @@ def main():
 
 	#change depending on how video sequence should be determined. VLC prepends sortable timestamp.
 	SortByName(files)
-
 	rc = Combine(files, ext)
+
+	#create several output files based on matching chunklists
+	#file_dict = DictionaryByChunklist(files)
+	#for key in file_dict:
+		#print(key)
+		#for file in file_dict[key]:
+			#print("\t" + file)
+
+		#rc = Combine(file_dict[key], ext)
+
+		#print(rc)
 
 	return rc
 
