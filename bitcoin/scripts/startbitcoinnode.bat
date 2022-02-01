@@ -1,0 +1,1 @@
+VBoxManage startvm "BitcoinNode" --type "headless"
