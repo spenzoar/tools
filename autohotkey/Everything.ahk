@@ -20,7 +20,7 @@ bottom_ypos := middle_ypos + window_height + spacer
 ^!t::
 {
 	;SetWorkingDir, %HOMEDRIVE%%HOMEPATH%
-	SetWorkingDir, C:\_git\byteseance\
+	SetWorkingDir, C:\_git\spenzoar\byteseance\
 	Run, PowerShell -NoLogo
 	return
 }
