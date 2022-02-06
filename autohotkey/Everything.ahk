@@ -36,11 +36,14 @@ CreateVLCWindow(xpos, ypos, width, height)
 	stream_url := "=.m3u8"
 	IfInString, Clipboard, %stream_url%
 	{
-		Sleep 100
+		sleep_time := 100
+		Sleep sleep_time
 		SendInput, {control down}n{control up}
-		Sleep 100
+		Sleep sleep_time
+		SendInput, {backspace}
+		Sleep sleep_time
 		SendInput, {control down}v{control up}
-		Sleep 100
+		Sleep sleep_time
 		SendInput, {enter}
 	}
 	return
@@ -204,12 +207,13 @@ CreateVLCWindow(xpos, ypos, width, height)
 ;================================================
 KeepAlive()
 {
-	; 1 min since last REAL user action
-	if (A_TimeIdlePhysical > 60000)
+	; 2 min since last REAL user action
+	if (A_TimeIdlePhysical > 120000)
 	{
+		sleep_time := 200
 		BlockInput, On
 		SendInput, {LWin}
-		Sleep 200
+		Sleep sleep_time
 		SendInput, {LWin}
 		BlockInput, Off
 	}
