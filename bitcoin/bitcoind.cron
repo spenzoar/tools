@@ -1,0 +1,3 @@
+
+#call the bitcoin start script at bootup
+@reboot /home/bitcoinadmin/_git/spenzoar/tools/bitcoin/start_bitcoind.sh
