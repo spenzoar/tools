@@ -29,7 +29,12 @@ bottom_ypos := middle_ypos + window_height + spacer
 CreateVLCWindow(xpos, ypos, width, height)
 {
 	Run, vlc
-	WinWait, VLC
+	WinWait, VLC,, 3
+	if ErrorLevel
+	{
+		MsgBox, WinWait timed out, 2
+	}
+	
 	WinMove, VLC, , xpos, ypos, width, height
 	
 	;paste HLS m3u8 stream url into vlc if in the clipboard
@@ -104,6 +109,62 @@ CreateVLCWindow(xpos, ypos, width, height)
 ^!6::
 {
 	CreateVLCWindow(right_xpos, bottom_ypos, window_width, window_height)
+	return
+}
+
+;================================================
+;start firefox with given URL and attempt login
+^!c::
+{
+	;keep login information here instead of in git repo
+	;these each return a simple string in quotes ""
+	#include UserInfo.ahk
+	username := get_username()
+	password := get_password()
+	url := get_url()
+	popup := get_popup()
+
+	sleep_time := 200
+
+	Run, firefox %url%
+	WinWait, Login,, 10
+	if ErrorLevel
+	{
+		MsgBox,,, WinWait timed out, 2
+		return
+	}
+	
+	;enter info into login screen
+	Sleep sleep_time
+	SendInput, %username%
+	Sleep sleep_time
+	SendInput, {tab}
+	Sleep sleep_time
+	SendInput, %password%
+	Sleep sleep_time
+	SendInput, {enter}
+	Sleep sleep_time
+	
+	;tab to accept popup and accept
+	WinWait, %popup%,, 5
+	if ErrorLevel
+	{
+		MsgBox,,, WinWait timed out, 2
+		return
+	}
+	SendInput, {tab}
+	Sleep sleep_time
+	SendInput, {tab}
+	Sleep sleep_time
+	SendInput, {tab}
+	Sleep sleep_time
+	SendInput, {tab}
+	Sleep sleep_time
+	SendInput, {enter}
+	Sleep sleep_time
+	
+	;MsgBox,,, done, 2
+	
 	return
 }
 
