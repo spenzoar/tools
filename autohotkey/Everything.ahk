@@ -124,7 +124,7 @@ CreateVLCWindow(xpos, ypos, width, height)
 	url := get_url()
 	popup := get_popup()
 
-	sleep_time := 200
+	sleep_time := 500
 
 	Run, firefox %url%
 	WinWait, Login,, 10

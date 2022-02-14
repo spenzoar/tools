@@ -143,6 +143,11 @@ def main():
 	#ffmpeg supports several video file extensions
 	ext = "mp4"
 	files = glob.glob("*." + ext)
+	
+	#delete when know combine succeeded
+	move_dir = "processed"
+	if os.path.exists(move_dir):
+		shutil.rmtree(move_dir)
 
 	#change depending on how video sequence should be determined. VLC prepends sortable timestamp.
 	SortByName(files)
