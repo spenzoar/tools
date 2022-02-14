@@ -1,6 +1,7 @@
 import os
 import sys
 import glob
+import shutil
 from combine import combine
 
 
@@ -12,6 +13,11 @@ def main():
 	#ffmpeg supports several video file extensions
 	ext = "mp4"
 	files = glob.glob("*." + ext)
+	
+	#delete when know combine succeeded
+	move_dir = "processed"
+	if os.path.exists(move_dir):
+		shutil.rmtree(move_dir)
 
 	#create several output files based on matching chunklists
 	file_dict = combine.DictionaryByChunklist(files)
