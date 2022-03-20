@@ -20,5 +20,12 @@
 # 
 # For more information see the manual pages of crontab(5) and cron(8)
 # 
+
+# m h  dom mon dow   command
+@reboot /home/torrentor/_git/spenzoar/tools/vpn/start_vpn.sh
+
 # m h  dom mon dow   command
 0 0-23 * * * /home/torrentor/_git/spenzoar/tools/vpn/start_vpn.sh
+
+# m h  dom mon dow   command
+0 0-23 * * * date > /home/torrentor/_git/spenzoar/tools/vpn/cron_test.txt

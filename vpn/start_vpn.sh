@@ -1,14 +1,14 @@
 #!/bin/sh
 
-protonvpn-cli ks --off
+/usr/bin/protonvpn-cli ks --off
 
-start-stop-daemon --start --name protonvpn-cli --startas /usr/bin/protonvpn-cli -- connect US-WA#26
+/sbin/start-stop-daemon --start --name protonvpn-cli --startas /usr/bin/protonvpn-cli -- connect US-WA#26
 
-protonvpn-cli ks --on
+/usr/bin/protonvpn-cli ks --on
 
-start-stop-daemon --start --name deluged --startas /usr/bin/deluged
+/sbin/start-stop-daemon --start --name deluged --startas /usr/bin/deluged
 
 #https://forum.deluge-torrent.org/viewtopic.php?t=55673
 #https://git.deluge-torrent.org/deluge/commit/?h=develop&id=d6c96d629183e8bab2167ef56457f994017e7c85
 #had to apply above fix to get deluge-web to start without error
-start-stop-daemon --start --name deluge-web --startas /usr/bin/deluge-web
+/sbin/start-stop-daemon --start --name deluge-web --startas /usr/bin/deluge-web
