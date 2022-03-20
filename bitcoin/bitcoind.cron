@@ -20,5 +20,12 @@
 # 
 # For more information see the manual pages of crontab(5) and cron(8)
 # 
+
+# m h  dom mon dow   command
+@reboot /home/bitcoinadmin/_git/spenzoar/tools/bitcoin/start_bitcoind.sh
+
 # m h  dom mon dow   command
 0 0-23 * * *  /home/bitcoinadmin/_git/spenzoar/tools/bitcoin/start_bitcoind.sh
+
+# m h  dom mon dow   command
+0 0-23 * * *  date > /home/bitcoinadmin/_git/spenzoar/tools/bitcoin/cron_test.txt
