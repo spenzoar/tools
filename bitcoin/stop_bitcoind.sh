@@ -1,3 +1,3 @@
 #!/bin/sh
 
-start-stop-daemon --stop --name bitcoind
+/sbin/start-stop-daemon --stop --name bitcoind
