@@ -4,13 +4,16 @@
 CoordMode, Mouse, Screen
 
 ;VLC screen settings
+;screen1: 1080x1920. 100%. +195y screen2 offset.
+;screen2: 1920x1080. 100%.    0y screen2 offset.
+;screen3: 1080x1920. 100%. +195y screen2 offset.
 window_width := 1080
 window_height := 620
 
 left_xpos := -1080
 right_xpos := 1920
 
-top_ypos := 130
+top_ypos := 200
 spacer := 5
 middle_ypos := top_ypos + window_height + spacer
 bottom_ypos := middle_ypos + window_height + spacer
