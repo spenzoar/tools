@@ -10,7 +10,7 @@ window_height := 620
 left_xpos := -1080
 right_xpos := 1920
 
-top_ypos := 200
+top_ypos := 130
 spacer := 5
 middle_ypos := top_ypos + window_height + spacer
 bottom_ypos := middle_ypos + window_height + spacer
@@ -219,6 +219,21 @@ CreateVLCWindow(xpos, ypos, width, height)
 	Sleep sleep_time
 	SendInput, {enter}gg easy {enter}
 	Sleep sleep_time
+	return
+}
+
+;================================================
+;spam a chat window with rapid text
+^!q::
+{
+	sleep_time := 100
+	
+	Loop, 50
+	{
+		SendInput, {enter}%A_Index%{enter}
+		Sleep sleep_time
+	}
+	
 	return
 }
 
