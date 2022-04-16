@@ -1,10 +1,6 @@
 #!/bin/sh
 
-/usr/bin/protonvpn-cli ks --off
-
 /sbin/start-stop-daemon --start --name protonvpn-cli --startas /usr/bin/protonvpn-cli -- connect US-WA#26
-
-/usr/bin/protonvpn-cli ks --on
 
 /sbin/start-stop-daemon --start --name deluged --startas /usr/bin/deluged
 
