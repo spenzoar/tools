@@ -173,7 +173,7 @@ CreateVLCWindow(xpos, ypos, width, height)
 
 ;================================================
 ;spam a chat window with rapid text
-^j::
+^!j::
 {
 	sleep_time := 200
 
