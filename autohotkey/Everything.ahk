@@ -4,6 +4,9 @@
 CoordMode, Mouse, Screen
 
 ;VLC screen settings
+;screen1: 1080x1920. 100%. +195y screen2 offset.
+;screen2: 1920x1080. 100%.    0y screen2 offset.
+;screen3: 1080x1920. 100%. +195y screen2 offset.
 window_width := 1080
 window_height := 620
 
@@ -219,6 +222,21 @@ CreateVLCWindow(xpos, ypos, width, height)
 	Sleep sleep_time
 	SendInput, {enter}gg easy {enter}
 	Sleep sleep_time
+	return
+}
+
+;================================================
+;spam a chat window with rapid text
+^!q::
+{
+	sleep_time := 100
+	
+	Loop, 50
+	{
+		SendInput, {enter}%A_Index%{enter}
+		Sleep sleep_time
+	}
+	
 	return
 }
 
