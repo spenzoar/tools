@@ -13,7 +13,10 @@ window_height := 620
 left_xpos := -1080
 right_xpos := 1920
 
-top_ypos := 200
+;cant figure out why but seems to jump some times.
+;top_ypos := 160
+top_ypos :=200
+
 spacer := 5
 middle_ypos := top_ypos + window_height + spacer
 bottom_ypos := middle_ypos + window_height + spacer
