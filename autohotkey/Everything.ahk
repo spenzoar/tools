@@ -257,31 +257,31 @@ CreateVLCWindow(xpos, ypos, width, height)
 	;how fast these can be cast would be based on casting speed breakpoints
 	sleep_time := 500
 
-	SendInput, {f2}
+	SendInput, {2}
 	Click, Right
 	Sleep sleep_time
-	SendInput, {f3}
+	SendInput, {3}
 	Click, Right
 	Sleep sleep_time
-	SendInput, {f4}
+	SendInput, {4}
 	Click, Right
 	Sleep sleep_time
-	SendInput, {f5}
+	SendInput, {5}
 	Click, Right
 	Sleep sleep_time
-	SendInput, {f5}
+	SendInput, {5}
 	Click, Right
 	Sleep sleep_time
-	SendInput, {f5}
+	SendInput, {5}
 	Click, Right
 	Sleep sleep_time
-	SendInput, {f5}
+	SendInput, {5}
 	Click, Right
 	Sleep sleep_time
-	SendInput, {f5}
+	SendInput, {5}
 	Click, Right
 	Sleep sleep_time
-	SendInput, {f1}
+	SendInput, {1}
 	Click, Right
 	return
 }
