@@ -132,7 +132,7 @@ CreateVLCWindow(xpos, ypos, width, height)
 
 	sleep_time := 500
 
-	Run, firefox %url%
+	Run, firefox.exe %url%
 	WinWait, Login,, 10
 	if ErrorLevel
 	{
