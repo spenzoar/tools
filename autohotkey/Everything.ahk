@@ -26,7 +26,7 @@ bottom_ypos := middle_ypos + window_height + spacer
 ^!t::
 {
 	;SetWorkingDir, %HOMEDRIVE%%HOMEPATH%
-	SetWorkingDir, C:\_git\spenzoar\tools\
+	SetWorkingDir, Z:\_git\tools
 	Run, PowerShell -NoLogo
 	return
 }
@@ -171,33 +171,6 @@ CreateVLCWindow(xpos, ypos, width, height)
 	
 	;MsgBox,,, done, 2
 	
-	return
-}
-
-;================================================
-;spam a chat window with rapid text
-^!j::
-{
-	sleep_time := 200
-
-	SendInput, {enter}in a 32 bit world {enter}
-	Sleep sleep_time
-	SendInput, {enter}you're a 2 bit user {enter}
-	Sleep sleep_time
-	SendInput, {enter}you got your own news group {enter}
-	Sleep sleep_time
-	SendInput, {enter}alt total loser {enter}
-	Sleep sleep_time
-	SendInput, {enter}your motherboard melts {enter}
-	Sleep sleep_time
-	SendInput, {enter}when you try and send a fax {enter}
-	Sleep sleep_time
-	SendInput, {enter}where'd you get your cpu in a box of crackerjax {enter}
-	Sleep sleep_time
-	SendInput, {enter}play me online and I know that I'll beat you {enter}
-	Sleep sleep_time
-	SendInput, {enter}if I ever meet you I'll control alt delete you {enter}
-	Sleep sleep_time
 	return
 }
 
