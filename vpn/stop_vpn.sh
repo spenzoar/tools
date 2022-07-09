@@ -1,7 +1,7 @@
 #!/bin/sh
 
-start-stop-daemon --stop --name deluge-web
+/sbin/start-stop-daemon --stop --name deluge-web
 
-start-stop-daemon --stop --name deluged
+/sbin/start-stop-daemon --stop --name deluged
 
-start-stop-daemon --stop --name protonvpn-cli disconnect
+/sbin/start-stop-daemon --stop --name protonvpn-cli disconnect

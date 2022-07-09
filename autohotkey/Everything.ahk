@@ -4,13 +4,19 @@
 CoordMode, Mouse, Screen
 
 ;VLC screen settings
+;screen1: 1080x1920. 100%. +195y screen2 offset.
+;screen2: 1920x1080. 100%.    0y screen2 offset.
+;screen3: 1080x1920. 100%. +195y screen2 offset.
 window_width := 1080
 window_height := 620
 
 left_xpos := -1080
 right_xpos := 1920
 
-top_ypos := 200
+;cant figure out why but seems to jump some times.
+;top_ypos := 160
+top_ypos :=200
+
 spacer := 5
 middle_ypos := top_ypos + window_height + spacer
 bottom_ypos := middle_ypos + window_height + spacer
@@ -20,7 +26,7 @@ bottom_ypos := middle_ypos + window_height + spacer
 ^!t::
 {
 	;SetWorkingDir, %HOMEDRIVE%%HOMEPATH%
-	SetWorkingDir, C:\_git\spenzoar\tools\
+	SetWorkingDir, Z:\_git\tools
 	Run, PowerShell -NoLogo
 	return
 }
@@ -126,7 +132,7 @@ CreateVLCWindow(xpos, ypos, width, height)
 
 	sleep_time := 500
 
-	Run, firefox %url%
+	Run, firefox.exe %url%
 	WinWait, Login,, 10
 	if ErrorLevel
 	{
@@ -170,33 +176,6 @@ CreateVLCWindow(xpos, ypos, width, height)
 
 ;================================================
 ;spam a chat window with rapid text
-^j::
-{
-	sleep_time := 200
-
-	SendInput, {enter}in a 32 bit world {enter}
-	Sleep sleep_time
-	SendInput, {enter}you're a 2 bit user {enter}
-	Sleep sleep_time
-	SendInput, {enter}you got your own news group {enter}
-	Sleep sleep_time
-	SendInput, {enter}alt total loser {enter}
-	Sleep sleep_time
-	SendInput, {enter}your motherboard melts {enter}
-	Sleep sleep_time
-	SendInput, {enter}when you try and send a fax {enter}
-	Sleep sleep_time
-	SendInput, {enter}where'd you get your cpu in a box of crackerjax {enter}
-	Sleep sleep_time
-	SendInput, {enter}play me online and I know that I'll beat you {enter}
-	Sleep sleep_time
-	SendInput, {enter}if I ever meet you I'll control alt delete you {enter}
-	Sleep sleep_time
-	return
-}
-
-;================================================
-;spam a chat window with rapid text
 ^!g::
 {
 	sleep_time := 200
@@ -223,6 +202,21 @@ CreateVLCWindow(xpos, ypos, width, height)
 }
 
 ;================================================
+;spam a chat window with rapid text
+^!q::
+{
+	sleep_time := 100
+	
+	Loop, 50
+	{
+		SendInput, {enter}%A_Index%{enter}
+		Sleep sleep_time
+	}
+	
+	return
+}
+
+;================================================
 ;league of legends dance emote
 ^!d::
 {
@@ -236,31 +230,31 @@ CreateVLCWindow(xpos, ypos, width, height)
 	;how fast these can be cast would be based on casting speed breakpoints
 	sleep_time := 500
 
-	SendInput, {f2}
+	SendInput, {2}
 	Click, Right
 	Sleep sleep_time
-	SendInput, {f3}
+	SendInput, {3}
 	Click, Right
 	Sleep sleep_time
-	SendInput, {f4}
+	SendInput, {4}
 	Click, Right
 	Sleep sleep_time
-	SendInput, {f5}
+	SendInput, {5}
 	Click, Right
 	Sleep sleep_time
-	SendInput, {f5}
+	SendInput, {5}
 	Click, Right
 	Sleep sleep_time
-	SendInput, {f5}
+	SendInput, {5}
 	Click, Right
 	Sleep sleep_time
-	SendInput, {f5}
+	SendInput, {5}
 	Click, Right
 	Sleep sleep_time
-	SendInput, {f5}
+	SendInput, {5}
 	Click, Right
 	Sleep sleep_time
-	SendInput, {f1}
+	SendInput, {1}
 	Click, Right
 	return
 }
